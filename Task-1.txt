@@ -1,0 +1,143 @@
+use Database ('First')
+
+db.createCollection("GuviTask1")
+
+//Inserting Field show show datas
+db.GuviTask1.insertMany([
+    {
+        ProductName: 'Laptop',
+        ProductPrice: 1000,
+        ProductColor: 'Grey',
+        ProductMaterial: 'Hard'
+    },
+    {
+        ProductName: 'Mobile',
+        ProductPrice: 900,
+        ProductColor: 'Green',
+        ProductMaterial: 'Hard'
+    },
+    {
+        ProductName: 'Tab',
+        ProductPrice: 800,
+        ProductColor: 'Black',
+        ProductMaterial: 'Hard'
+    },
+    {
+        ProductName: 'Tv',
+        ProductPrice: 700,
+        ProductColor: 'Black',
+        ProductMaterial: 'Hard'
+    }, 
+    {
+        ProductName: 'Watch',
+        ProductPrice: 600,
+        ProductColor: 'White',
+        ProductMaterial: 'Hard'
+    }, 
+    {
+        ProductName: 'Speaker',
+        ProductPrice: 500,
+        ProductColor: 'Black',
+        ProductMaterial: 'Soft'
+    }, 
+    {
+        ProductName: 'Blutooth-Headset',
+        ProductPrice: 500,
+        ProductColor: 'Blue',
+        ProductMaterial: 'Soft'
+    }, 
+    {
+        ProductName: 'Mouse',
+        ProductPrice: 492.00,
+        ProductColor: 'Indigo',
+        ProductMaterial: 'Soft'
+    }, 
+    {
+        ProductName: 'Pen',
+        ProductPrice: 200,
+        ProductColor: 'Red',
+        ProductMaterial: 'Soft'
+    }, 
+    {
+        ProductName: 'Pencil',
+        ProductPrice: 100,
+        ProductColor: 'Grey',
+        ProductMaterial: 'Soft'
+    }
+    
+    ])
+
+------------------------------------------------------------------------------------------------
+
+
+/1/Find all the information about each products
+
+db.GuviTask1.find({});
+
+------------------------------------------------------------------------------------------------
+
+/2/Find the product price which are between 400 to 800
+
+db.GuviTask1.find({$and: [{'ProductPrice' : {$gt: 400}},{'ProductPrice':{$lt: 800}}]});
+
+------------------------------------------------------------------------------------------------
+
+/3/Find the product price which are not between 400 to 600
+
+db.GuviTask1.find({ 'ProductPrice': { $not: { $gte: 400,$lt: 600 }}});
+
+------------------------------------------------------------------------------------------------
+
+
+/4/List the four product which are greater than 500 in price 
+
+  db.GuviTask1.find({'ProductPrice':{$gt: 500}}).limit(4);
+
+------------------------------------------------------------------------------------------------
+
+
+/5/Find the product name and product material of each products  
+
+db.GuviTask1.find({},{'ProductName':1}) 
+  
+db.GuviTask1.find({},{'ProductMaterial':0})
+
+------------------------------------------------------------------------------------------------
+
+ 
+/6/Find the product with a row id of 10  
+
+  db.GuviTask1.findOne({_id:ObjectId("6267b42c21a652bdcff33da8")});
+
+------------------------------------------------------------------------------------------------
+
+  
+/7/Find only the product name and product material
+  
+  db.GuviTask1.distinct('ProductName');
+  
+  db.GuviTask1.distinct('ProductMaterial');
+
+------------------------------------------------------------------------------------------------
+  
+/8/Find all products which contain the value of soft in product material   
+  
+  db.GuviTask1.find({'ProductMaterial':'Soft'});
+
+------------------------------------------------------------------------------------------------
+  
+/9/Find products which contain product color indigo  and product price 492.00  
+  
+  db.GuviTask1.find({$and: [{'ProductColor':'Indigo'},{'ProductPrice':492}]});
+
+------------------------------------------------------------------------------------------------
+  
+/10/Delete the products which product price value are same  
+  
+  db.GuviTask1.remove({'ProductPrice':500}, {justOne: true});
+
+    
+    
+    
+    
+    
