@@ -2,7 +2,8 @@ use Database ('First')
 
 db.createCollection("GuviTask1")
 
-//Inserting Field show show datas
+//Inserting Field datas
+
 db.GuviTask1.insertMany([
     {
         ProductName: 'Laptop',
